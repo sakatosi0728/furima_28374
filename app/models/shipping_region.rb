@@ -1,4 +1,4 @@
-class Genre < ActiveHash::Base
+class Shipping_region < ActiveHash::Base
   self.data = [
   ]
 end

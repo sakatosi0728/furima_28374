@@ -1,4 +1,4 @@
-class Genre < ActiveHash::Base
+class Status < ActiveHash::Base
   self.data = [
   ]
 end

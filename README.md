@@ -9,13 +9,13 @@
 | password             | string | null: false |
 | family_name          | string | null: false |
 | first_name           | string | null: false |
-| family_name(kana)    | string | null: false |
-| first_name(kana)     | string | null: false |
+| family_name_kana     | string | null: false |
+| first_name_kana      | string | null: false |
 | birthday             | date   | null: false |
 
 ### Association
-- has_many :item
-- has_many :buyer
+- has_many :items
+- has_many :buyers
 
 ## items テーブル
 
@@ -53,6 +53,7 @@
 | Column           | Type       | Options     |
 | ---------------- | ---------- | ----------- |
 | postal_code      | string     | null: false |
+| prefectures      | string     | null: false |
 | city             | string     | null: false |
 | address          | string     | null: false |
 | building_name    | string     |             |

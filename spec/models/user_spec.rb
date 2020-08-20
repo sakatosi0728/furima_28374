@@ -10,6 +10,16 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include("Nickname can't be blank")
     end
+    it "family_nameは数値だと登録できない"
+      @user.family_name = '1234567890'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Family_name can't be Numerical_value")
+    end
+    it "first_nameは数値だと登録できない"
+      @user.first_name = '1234567890'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Farst_name can't be Numerical_value")
+    end
     it "emailが空では登録できない" do
       user = User.new(nickname: "abe", email: "", password: "00000000", password_confirmation: "00000000")
       user.valid?

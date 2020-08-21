@@ -41,5 +41,15 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
     end
+    it "family_name_kanaはカタカナしか登録できない"
+      @user.family_name = 'カナ'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Family_name_kana can't be Numerical_value")
+    end
+    it "first_nameは数値だと登録できない"
+      @user.first_name = 'カナ'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Farst_name_kana can't be Numerical_value")
+    end
   end
 end

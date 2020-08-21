@@ -44,12 +44,21 @@ RSpec.describe User, type: :model do
     it "family_name_kanaはカタカナしか登録できない"
       @user.family_name = 'カナ'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Family_name_kana can't be Numerical_value")
+      expect(@user.errors.full_messages).to include("Only katakana can be registered for family_name_kana")
     end
-    it "first_nameは数値だと登録できない"
+    it "first_name_kanaはカタカナしか登録できない"
       @user.first_name = 'カナ'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Farst_name_kana can't be Numerical_value")
+      expect(@user.errors.full_messages).to include("Only katakana can be registered for first_name_kana")
     end
+    it "emailは@を含む必要がある"
+     @user.email = '@'
+     @user.valid?
+     expect(@user.errors.full_messages).to include("Email must contain @")
+    end
+    it "メールアドレスが一意性である必要がある"
+     @user.email 
+     @user.valid?
+     expect(@user.errors.full_messages).to include("Email must contain @")
   end
 end

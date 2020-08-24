@@ -42,12 +42,12 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
     end
     it "family_name_kanaはカタカナしか登録できない"
-      @user.family_name = 'カナ'
+      @user.family_name_kana = 'カナ'
       @user.valid?
       expect(@user.errors.full_messages).to include("Only katakana can be registered for family_name_kana")
     end
     it "first_name_kanaはカタカナしか登録できない"
-      @user.first_name = 'カナ'
+      @user.first_name_kana = 'カナ'
       @user.valid?
       expect(@user.errors.full_messages).to include("Only katakana can be registered for first_name_kana")
     end
@@ -60,5 +60,11 @@ RSpec.describe User, type: :model do
      @user.email 
      @user.valid?
      expect(@user.errors.full_messages).to include("Email must contain @")
+    end
+    it "birthdayが空だと登録できない" do
+      @user.birthday = ''
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Birthday can't be blank")
+    end
   end
 end

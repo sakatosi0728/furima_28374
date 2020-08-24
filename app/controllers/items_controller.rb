@@ -41,11 +41,4 @@ class ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(:images, :name, :explanation, :category_id, :status_id, :shipping_charges_id, :shipping_region_id, :days_until_shipping_id, :price)
   end
-
-  def move_to_index
-    unless user_signed_in?
-      redirect_to action: :index
-    end
-  end
-
 end

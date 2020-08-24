@@ -12,6 +12,13 @@ class ItemsController < ApplicationController
 
   def create
     Item.create(item_params)
+
+    if @user.valid?
+      @user.save  
+      return redirect_to root_path
+    else
+      render "new"
+    end
   end
 
   def destroy

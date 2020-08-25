@@ -7,4 +7,5 @@ class Item < ApplicationRecord
   validates :category_id, presence: true
   validates :status_id, presence: true
   validates :shipping_charges_id, presence: true
+  validates :shipping_region_id, presence: true
 end

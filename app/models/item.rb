@@ -3,4 +3,6 @@ class Item < ApplicationRecord
 
   validates :image, presence: true
   validates :name, presence: true
+  validates :explanation, presence: true
+  validates :category_id, presence: true
 end

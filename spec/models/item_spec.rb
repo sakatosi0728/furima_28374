@@ -1,5 +1,7 @@
 require 'rails_helper'
 RSpec.describe Item, type: :model do
+  let(:item) {FactoryBot.create(:item)}
+
   before do
     @item = FactoryBot.build(:item)
   end

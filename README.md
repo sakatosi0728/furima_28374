@@ -22,7 +22,6 @@
 | Column                 | Type       | Options                        |
 | ---------------------- | ---------- | ------------------------------ |
 | user                   | reference  | null: false, foreign_key: true |
-| images                 | string     | null: false                    |
 | name                   | string     | null: false                    |
 | explanation            | text       | null: false                    |
 | category_id            | integer    | null: false                    |

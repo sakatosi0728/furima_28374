@@ -131,7 +131,7 @@
         <% if @items.all %>
           <div class='item-img-content'>
             <% @items.each do |item| %>
-            <%= link_to item_path(item) do %>
+           　<%= link_to item_path(item) do %>
               <div class="content_image" style="background-image:">
                 <%= image_tag item.image%>
               </div>

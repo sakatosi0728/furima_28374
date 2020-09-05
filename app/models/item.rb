@@ -7,8 +7,9 @@ class Item < ApplicationRecord
   belongs_to_active_hash :shipping_region
   belongs_to_active_hash :DayUntilShipping
 
-  has_one :buyer
+  has_one :order
   belongs_to :user
+  has_one :buyer_info
 
   has_one_attached :image
 

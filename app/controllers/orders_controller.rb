@@ -1,18 +1,17 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
-
+  before_action :move_to_index, except: [:index, :create]
+  before_action :set_order
 
   def index
-    def index
-      @orders = Order.new
-    end
+    @buyer_info = Buyer.new
   end
 
   def create
-    @order = Order.new(order_params)
-    if @order.valid?
+    @buyer_info = Buyer.new(buyer_params)
+    if @buyer_info.save
+      #binding.pry
       pay_item
-      @order.save
       return redirect_to root_path
     else
       render 'index'
@@ -21,16 +20,27 @@ class OrdersController < ApplicationController
 
   private
 
-  def order_params
-    params.permit(:price, :token)
+  def buyer_params
+    params.require(:buyer).permit(:postal_code, :shipping_region_id, :city, :address, :building_name, :phone_number, :token, :price).merge(user_id: current_user.id, item_id: params[:item_id])
   end
+
 
   def pay_item
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
     Payjp::Charge.create(
-      amount: order_params[:price],  # 商品の値段
-      card: order_params[:token],    # カードトークン
+      amount: @item.price,  # 商品の値段
+      card: buyer_params[:token],    # カードトークン
       currency:'jpy'                 # 通貨の種類(日本円)
     )
+  end
+
+  def move_to_index
+    unless user_signed_in?
+      redirect_to action: :index
+    end
+  end
+
+  def set_order
+    @item = Item.find(params[:item_id])
   end
 end

@@ -10,7 +10,6 @@ class OrdersController < ApplicationController
   def create
     @buyer_info = Buyer.new(buyer_params)
     if @buyer_info.save
-      #binding.pry
       pay_item
       return redirect_to root_path
     else

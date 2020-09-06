@@ -1,7 +1,5 @@
 require 'rails_helper'
 RSpec.describe Buyer, type: :model do
-  let(:buyer) {FactoryBot.create(:buyer)}
-
   before do
     @buyer = FactoryBot.build(:buyer)
   end
@@ -29,6 +27,16 @@ RSpec.describe Buyer, type: :model do
     end
     it "郵便番号は-を含む必要がある" do
       @buyer.postal_code = '-'
+      @buyer.valid?
+      expect(@buyer.errors.full_messages).to include()
+    end
+    it "電話番号はハイフンが不要ある" do
+      @buyer.phone_number = "09012345678"
+      @buyer.valid?
+      expect(@buyer.errors.full_messages).to include()
+    end
+    it "電話番号が9文字以下であれば登録できない" do
+      @buyer.phone_number = "09012345678"
       @buyer.valid?
       expect(@buyer.errors.full_messages).to include()
     end

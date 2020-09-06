@@ -40,5 +40,10 @@ RSpec.describe Buyer, type: :model do
       @buyer.valid?
       expect(@buyer.errors.full_messages).to include()
     end
+    it "トークンが空だと登録できない" do
+      @buyer.token = ''
+      @buyer.valid?
+      expect(@buyer.errors.full_messages).to include("Token can't be blank")
+    end
   end
 end

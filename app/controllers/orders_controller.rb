@@ -1,10 +1,14 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
-  before_action :move_to_index, except: [:index, :create]
   before_action :set_order
+  before_action :move_to_index, only: [:index, :create]
 
   def index
     @buyer_info = Buyer.new
+
+    if @item.order != nil
+      redirect_to root_path
+    end 
   end
 
   def create
@@ -34,8 +38,8 @@ class OrdersController < ApplicationController
   end
 
   def move_to_index
-    unless user_signed_in?
-      redirect_to action: :index
+    if current_user.id == @item.user_id
+      redirect_to root_path
     end
   end
 

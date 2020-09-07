@@ -16,4 +16,6 @@ class Buyer
     Order.create(item_id: item_id, user_id: user_id)
     BuyerInfo.create(postal_code: postal_code, shipping_region_id: shipping_region_id, city: city, address: address, building_name: building_name, phone_number: phone_number, item_id: item_id )
   end
+
+  #
 end

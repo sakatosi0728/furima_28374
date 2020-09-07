@@ -13,8 +13,9 @@ class OrdersController < ApplicationController
 
   def create
     @buyer_info = Buyer.new(buyer_params)
-    if @buyer_info.save
+    if @buyer_info.valid?
       pay_item
+      @buyer_info.save
       return redirect_to root_path
     else
       render 'index'

@@ -1,12 +1,12 @@
 # config valid for current version and patch releases of Capistrano
-lock '3.1'
+lock '3.14.1'
 
 set :application, "furima_28374"
-set :repo_url, "git@example.com:sakatosi0728/furima_28374.git"
+set :repo_url, "git@github.com:sakatosi0728/furima_28374.git"
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
 set :rbenv_type, :user
 set :rbenv_ruby, '2.6.5'
-set :ssh_options, auth_methods: ['publickey'],keys: ['~/.ssh/sakatosi0728']
+set :ssh_options, auth_methods: ['publickey'],keys: ['~/.ssh/sakatosi0728.pem']
 set :unicorn_pid, -> { "#{shared_path}/tmp/pids/unicorn.pid" }
 set :unicorn_config_path, -> { "#{current_path}/config/unicorn.rb" }
 # Default branch is :master

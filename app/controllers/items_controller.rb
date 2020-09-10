@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new]
-  before_action :move_to_index, except: [:index, :create, :show]
+  before_action :move_to_index, except: [:index, :create, :show, :search]
   before_action :set_item, only: [:edit, :show, :update,:destroy]
 
   def index
@@ -33,6 +33,10 @@ class ItemsController < ApplicationController
   def destroy
     @item.destroy
     redirect_to root_path
+  end
+
+  def search
+    @items = Item.search(params[:keyword])
   end
 
   private
